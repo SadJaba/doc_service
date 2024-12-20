@@ -32,7 +32,7 @@ public class Document {
     private List<DocumentVersion> versions = new ArrayList<>();
 
     @Column(nullable = false)
-    private String ownerId;
+    private UUID ownerId;
 
     @Column(nullable = false)
     private boolean isPublic;

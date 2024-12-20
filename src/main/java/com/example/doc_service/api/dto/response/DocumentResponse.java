@@ -7,7 +7,7 @@ public record DocumentResponse(
         UUID id,
         String title,
         String content,
-        String ownerId,
+        UUID ownerId,
         boolean isPublic
 ) {
 }

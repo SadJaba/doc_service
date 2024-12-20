@@ -6,6 +6,8 @@ import com.example.doc_service.api.dto.response.DocumentResponse;
 import com.example.doc_service.api.dto.response.DocumentVersionResponse;
 import com.example.doc_service.domain.model.Document;
 import com.example.doc_service.domain.model.DocumentVersion;
+import com.example.doc_service.domain.model.permission.PermissionType;
+import com.example.doc_service.domain.repository.DocumentPermissionRepository;
 import com.example.doc_service.domain.repository.DocumentRepository;
 import com.example.doc_service.domain.repository.DocumentVersionRepository;
 import com.example.doc_service.service.DocumentService;
@@ -22,10 +24,18 @@ import java.util.UUID;
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository documentRepository;
     private final DocumentVersionRepository versionRepository;
+    private final DocumentPermissionRepository permissionRepository;
 
     @Override
-    public DocumentResponse getDocument(UUID documentId){
-        return findDocument(documentId).toDto();
+    public DocumentResponse getDocument(UUID documentId) {
+        Document document = documentRepository.findById(documentId)
+                .orElseThrow(() -> new RuntimeException("Document not found"));
+//        if (!document.isPublic() && !document.getOwnerId().equals(userId)) {
+//            permissionRepository.findByDocumentIdAndUserIdAndPermissionType(documentId, userId, PermissionType.VIEW)
+//                    .orElseThrow(() -> new RuntimeException("You don't have permission to view this document"));
+//        }
+
+        return document.toDto();
     }
 
     @Override
