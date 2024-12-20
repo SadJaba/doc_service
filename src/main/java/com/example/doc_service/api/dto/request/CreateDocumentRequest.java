@@ -6,7 +6,7 @@ import java.util.UUID;
 public record CreateDocumentRequest(
         String title,
         String content,
-        UUID ownerId,
+        String ownerId,
         boolean isPublic
 ){
 }

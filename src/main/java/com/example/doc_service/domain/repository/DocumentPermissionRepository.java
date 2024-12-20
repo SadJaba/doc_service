@@ -10,6 +10,6 @@ import java.util.UUID;
 
 @Repository
 public interface DocumentPermissionRepository extends JpaRepository<DocumentPermission, UUID> {
-    Optional<DocumentPermission> findByDocumentIdAndUserIdAndPermissionType(UUID document_id, String email, PermissionType permissionType);
+//    Optional<DocumentPermission> findByDocumentIdAndUserIdAndPermissionType(UUID document_id, String email, PermissionType permissionType);
 }
 
